@@ -196,8 +196,16 @@ async function main() {
       await capture("fail-final").catch(() => {});
     }
   } finally {
-    await context.close();
-    await browser.close();
+    try {
+      await context.close();
+    } catch (err) {
+      report.warnings.push(`video finalization failed: ${String(err.message).split("\n")[0]} (fix: npx playwright install ffmpeg)`);
+    }
+    try {
+      await browser.close();
+    } catch {
+      // Browser close after context close rarely fails; nothing useful to report.
+    }
   }
 
   const recorded = readdirSync(videoDir).filter((f) => f.endsWith(".webm"));
