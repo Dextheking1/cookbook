@@ -46,6 +46,10 @@ Decompose a task into a JSON DAG, fan it out across local subagents, and stream 
 
 A miniature Cursor SDK in Perl on the open [`sdk.v1` bridge](https://github.com/cursor/sdk-bridge). Shows how to spawn `cursor-sdk-bridge`, speak Connect JSON, and run one local agent turn without a first-party SDK.
 
+### [PR explainer video](sdk/pr-explainer-video)
+
+Turn a GitHub pull request into a short narrated explainer video: the Cursor SDK agent writes a scene-by-scene script from the PR diff, then the example renders slides, synthesizes voice-over, and stitches an MP4.
+
 Learn more in the [Cursor SDK TypeScript docs](https://cursor.com/docs/sdk/typescript) and the [SDK Bridge docs](https://cursor.com/docs/sdk/bridge).
 
 ## xAI API

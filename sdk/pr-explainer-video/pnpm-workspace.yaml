@@ -1,0 +1,7 @@
+packages:
+  - "."
+
+onlyBuiltDependencies:
+  - esbuild
+  - sqlite3
+  - sharp

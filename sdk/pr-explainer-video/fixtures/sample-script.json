@@ -1,0 +1,78 @@
+{
+  "title": "Explainer: Add a Perl SDK Bridge adapter example",
+  "summary": "Summary - Adds sdk/perl-bridge-adapter: a miniature Cursor SDK in Perl on the open sdk.v1 bridge. - Core Perl 5.14+ only (HTTP::Tiny, JSON::PP). No CPAN deps. - Spawns the standalone…",
+  "scenes": [
+    {
+      "id": "intro",
+      "headline": "Add a Perl SDK Bridge adapter example",
+      "bullets": [
+        "cursor/cookbook#52",
+        "by @ericzakariasson",
+        "5 file(s) changed"
+      ],
+      "narration": "This pull request, Add a Perl SDK Bridge adapter example, updates cursor cookbook. Here's what changed and why.",
+      "code": null
+    },
+    {
+      "id": "why",
+      "headline": "Why it exists",
+      "bullets": [
+        "Summary",
+        "Adds sdk/perl-bridge-adapter: a miniature Cursor SDK in Perl on…",
+        "Core Perl 5.14+ only (HTTP::Tiny, JSON::PP). No CPAN deps."
+      ],
+      "narration": "The author describes the motivation like this: Summary - Adds sdk/perl-bridge-adapter: a miniature Cursor SDK in Perl on the open sdk.v1 bridge. - Core Perl 5.14+ only (HTTP::Tiny, JSON::PP). No CPAN deps. - Spawns the standalone cursor-sdk-bridge binary, does the ready-line handshake, and runs one local agent turn (same…",
+      "code": null
+    },
+    {
+      "id": "file-1",
+      "headline": "CursorSdk.pm",
+      "bullets": [
+        "added",
+        "+451 / -0"
+      ],
+      "narration": "Next, CursorSdk.pm was added, with 451 additions and 0 deletions.",
+      "code": {
+        "filename": "sdk/perl-bridge-adapter/lib/CursorSdk.pm",
+        "snippet": "+package CursorSdk;\n+\n+use strict;\n+use warnings;\n+use JSON::PP;\n+use Exporter qw(import);\n+our @EXPORT_OK = qw(prompt);\n+\n+our $VERSION = '0.1.0';\n+\n+my $READY_PREFIX     = 'cursor-sdk-bridge ready ';\n+my $STARTUP_TIMEOUT  = 30;"
+      }
+    },
+    {
+      "id": "file-2",
+      "headline": "demo.pl",
+      "bullets": [
+        "added",
+        "+73 / -0"
+      ],
+      "narration": "Next, demo.pl was added, with 73 additions and 0 deletions.",
+      "code": {
+        "filename": "sdk/perl-bridge-adapter/demo.pl",
+        "snippet": "+#!/usr/bin/env perl\n+use strict;\n+use warnings;\n+use FindBin;\n+use lib \"$FindBin::Bin/lib\";\n+use CursorSdk;\n+\n+my $prompt = $ENV{CURSOR_PROMPT}\n+  // 'Explain this project in one paragraph.';\n+my $workspace = $ENV{CURSOR_WORKSPACE} // $FindBin::Bin . '/../..';\n+my $model     = $ENV{CURSOR_MODEL};\n+"
+      }
+    },
+    {
+      "id": "file-3",
+      "headline": "README.md",
+      "bullets": [
+        "added",
+        "+69 / -0"
+      ],
+      "narration": "Next, README.md was added, with 69 additions and 0 deletions.",
+      "code": {
+        "filename": "sdk/perl-bridge-adapter/README.md",
+        "snippet": "+# Perl SDK Bridge adapter\n+\n+A miniature Cursor SDK written in Perl, talking to the open [`sdk.v1` bridge](https://github.com/cursor/sdk-bridge) over Connect JSON. No CPAN modules: Perl 5.14+ core only (`HTTP::Tiny`, `JSON::PP`).\n+\n+This is a teaching example for building an adapter in a language without a first-party SDK. It is not a supported product SDK. Prefer [`@cursor/sdk`](https://www.npmjs.com/package/@cursor/sdk) or [`cursor-sdk`](https://pypi.org/project/cursor-sdk/) when you can.\n+\n+```perl\n+use CursorSdk qw(prompt);\n+\n+print prompt(\n+    \"Summarize this repository.\",\n+    cwd => \"/path/to/repo\","
+      }
+    },
+    {
+      "id": "outro",
+      "headline": "Try it",
+      "bullets": [
+        "Base: main",
+        "Head: sdk/perl-bridge-adapter",
+        "https://github.com/cursor/cookbook/pull/52"
+      ],
+      "narration": "That's the tour of pull request 52. Check the full discussion on GitHub for review notes and follow-ups.",
+      "code": null
+    }
+  ]
+}

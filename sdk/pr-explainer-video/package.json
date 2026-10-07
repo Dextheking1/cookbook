@@ -1,0 +1,30 @@
+{
+  "name": "pr-explainer-video",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Turn a GitHub pull request into a short narrated explainer video with the Cursor SDK.",
+  "packageManager": "pnpm@10.9.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "example": "tsx src/index.ts --from-pr-file fixtures/sample-pr.json --skip-agent --out output/example"
+  },
+  "dependencies": {
+    "@cursor/sdk": "^1.0.9",
+    "sharp": "^0.34.4"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "sqlite3", "sharp"]
+  }
+}
